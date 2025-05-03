@@ -1,0 +1,119 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block main %}
+
+{% if error == "no" %}
+<script>
+    alert('Logged in successfully');
+    window.location=('{% url 'admin_home' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Invalid Login Credentials,Try Again...');
+</script>
+{% endif %}
+
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Admin Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="pwd" placeholder="Enter Password">
+                        <div class="form-text">Never share your password with anyone else.</div>
+                    </div>
+                    <center><button type="submit" class="btn btn-success" name="submit">Login</button></center>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Login Modal -->
+
+<!-- Home Section -->
+<section id="home">
+    <div id="route-search-form">
+        <h1 class="text-primary">Bus Pass Management System</h1>
+        <p class="text-center">Welcome to Bus Pass Management System. This is simple python django project designed by abc xyz.</p>
+        <br>
+        <center>
+            <a href="#about">
+                <button class="btn btn-primary">Scroll Down <i class="fa fa-arrow-down"></i></button>
+            </a>
+        </center>
+    </div>
+</section>
+
+<!-- End Home Section -->
+
+<!-- About Section -->
+    <section id="about">
+        <div>
+            <h1>About Us</h1>
+            <h4>If you interested got the Pass then Contact You.</h4>
+            <p>
+                Concessionary Fares are available for people who meet
+                the qualifying age criteria and those with a registered disability.
+                Concessionary pass holders are entitled to free off-peak travel on bus
+                services after 9.30am weekdays and at all times at weekends and on public holidays.
+                Full fare charges apply to all travel before 9.30am during weekdays.
+            </p>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>
+            <i class="far fa-copyright"> Bus Pass Management System | Made with &#10084;&#65039;</i>
+        </p>
+    </footer>
+</div>
+
+<!-- Delete Booking Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-exclamation-circle"></i></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2 class="text-center pb-4">
+                    Are you sure?
+                </h2>
+                <p>
+                    Do you really want to delete your booking? <strong>This process cannot be undone.</strong>
+                </p>
+                <!-- Needed to pass pnr -->
+                <form action="" id="delete-form" method="POST">
+                    <input id="delete-id" type="hidden" name="id">
+                    <input id="delete-booked-seat" type="hidden" name="booked_seat">
+                    <input id="delete-booked-bus" type="hidden" name="bus">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="delete-form" class="btn btn-primary btn-danger" name="deleteBtn">Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

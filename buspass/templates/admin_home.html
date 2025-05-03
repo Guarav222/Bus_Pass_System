@@ -1,0 +1,189 @@
+{% extends 'admin_base.html' %}
+{% block main  %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <style type="text/css">
+      a:link {
+        text-decoration: none;
+      }
+
+      .order-card {
+        color: rgb(255, 255, 255);
+      }
+
+      .bg-c-blue {
+        background: #04868f;
+      }
+
+      .bg-c-green {
+        background:#56959f;
+      }
+
+      .bg-c-yellow {
+        background: #F56565;
+      }
+
+      .bg-c-pink {
+        background: #663a30;
+      }
+
+
+      .card {
+
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+        border: 1px solid black;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .card .card-block {
+        padding: 25px;
+      }
+
+      .order-card i {
+        font-size: 26px;
+      }
+
+      .f-left {
+        float: left;
+      }
+
+      .f-right {
+        float: right;
+      }
+      header {
+      left: 0px;
+      right: 0px;
+    }
+
+    .glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+/* Rounded border */
+hr.rounded {
+  border-top: 8px solid lightblue;
+  border-radius: 5px;
+}
+
+.prjdiv:hover{
+transform:translateY(-10px)
+}
+div .container1{
+width:100%;
+background-color:white;
+border-radius:8px;
+}
+h2, h4{
+ padding:10Px;
+}
+
+    </style>
+  </head>
+
+<marquee style="font-family : 'Monotype Corsiva'; font-size : 25px; color : white; background-color : #ad1457; font-weight: bold; margin-top:1%">
+    Welcome to Bus Pass Management System.
+</marquee>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"> <a href="{% url 'manage_Category' %}" style="text-decoration: none;color:white;">Total Category</a> </h6>
+            <h2 class="text-right"><i  class="fas fa-users f-left"></i><span>{{cat}}</span></h2>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="{% url 'manage_Pass' %}" style="text-decoration: none;color:white;">Total Pass</a> </h6>
+            <h2 class="text-right"><i class="fab fa-product-hunt f-left"></i><span>{{totalpass}}</span></h2>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="{% url 'manage_Pass' %}" style="text-decoration: none;color:white;">Pass Created Today</a></h6>
+            <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{tpass}}</span></h2>
+
+          </div>
+        </div>
+      </div>
+
+        <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="{% url 'manage_Pass' %}" style="text-decoration: none;color:white;">Pass Created Yesterday</a></h6>
+            <h2 class="text-right"><i class="fas fa-clipboard f-left"></i><span>{{ypass}}</span></h2>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"> <a href="{% url 'manage_Pass' %}" style="text-decoration: none;color:white;">Pass Created Seven Day</a> </h6>
+            <h2 class="text-right"><i class="fas fa-user-cog f-left"></i><span>{{lspass}}</span></h2>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"> <a href="{% url 'unread_queries' %}" style="text-decoration: none;color:white;">Unread Queries</a> </h6>
+            <h2 class="text-right"><i class="fas fa-book f-left"></i><span>{{unread}}</span></h2>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"> <a href="{% url 'read_queries' %}" style="text-decoration: none;color:white;">Read Queries</a> </h6>
+            <h2 class="text-right"><i class="fas fa-file-signature f-left"></i><span>{{read}}</span></h2>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+
+{% endblock %}

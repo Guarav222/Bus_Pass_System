@@ -1,0 +1,49 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block main %}
+
+<section id="contact">
+        <div id="contact-form" class="mt-5">
+            <h1>Contact Us</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+                </div>
+                <div>
+                    <label for="email">Email Address</label>
+                    <input type="email" name="emailid" id="email" placeholder="Ex-abc@gmail.com" required>
+                </div>
+
+                <div>
+                    <label for="contact1">Contact Number</label>
+                    <input type="text" name="contact" id="contact1" placeholder="91XXXXXXXX" required>
+                </div>
+
+                <div>
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" cols="20" rows="5" placeholder="Any Queries...?"></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Submit" class="btn btn-secondary">
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+{% if error == "no" %}
+<script>
+    alert('Your Query has been Send Successfully');
+    window.location=('{% url 'contact' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong. Please try again');
+</script>
+{% endif %}
+
+{% endblock %}
